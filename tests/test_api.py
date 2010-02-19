@@ -27,8 +27,17 @@ def test_lorem():
     paragraph = f.lorem()
     assert pattern.match(paragraph)
 
-def test_flow():
-    name = f.name()
-    _, last = name.split()
-    username = f.username()
-    assert username[1:] == last.lower()
+# def test_address():
+#     pattern = re.compile(r"""(\d+)\s+           # first numbers
+#                              (.*)\s+       # street address
+#                              ([A-Z][A-Z])\s+          # state
+#                              (\d{5})\s+         # zip
+#                              (.*)               # the rest
+#                           """, re.X)
+#     address = f.full_address()
+#     assert pattern.match(address)
+
+def test_phonenumber():
+    pattern = re.compile(r"\d{3}-\d{3}-\d{4}")
+    phonenumber = f.phonenumber()
+    assert pattern.match(phonenumber)
