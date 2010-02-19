@@ -1,16 +1,18 @@
 """
 Faker
 """
+
 import random
-from faker.data import *
-from faker.patterns import *
-from faker.utils import __rand, __numerify, __letterify, __bothify
+import data
+import patterns
+from utils import _rand, _numerify, _bothify, _letterify
 
 
-__all__ = ["Faker"]
+__all__ = ("Faker",)
 
 
 class Faker(object):
+
     def __init__(self):
         self._name = ""
         self._email = ""
@@ -21,10 +23,10 @@ class Faker(object):
         return self._name
 
     def _first_name(self):
-        return __rand(FIRST_NAMES)
+        return _rand(data.FIRST_NAMES)
 
     def _last_name(self):
-        return __rand(LAST_NAMES)
+        return _rand(data.LAST_NAMES)
 
     def username(self):
         first, last = self._name.split()
@@ -36,39 +38,39 @@ class Faker(object):
         return self._email
 
     def _domain(self):
-        return __rand(FREE_EMAIL)
+        return _rand(data.FREE_EMAIL)
 
     def full_address(self):
-        return "%s\n%s, %s %s" % (self._street_address, self._city, self._state_abbr, self._zip_code)
+        return "%s\n%s, %s %s" % (self._street_address(), self._city(), self._state_abbr(), self._zip_code())
 
     def phonenumber(self):
-        return __numerify("###-###-#####")
+        return _numerify("###-###-#####")
 
     def _street_address(self):
-        return __numerify(random.choice(["##### %s" % __rand(STREET_NAME),
-                                         "#### %s" % __rand(STREET_NAME),
-                                         "### %s" % __rand(STREET_NAME),
-                                         "### %s %s" % (__rand(STREET_NAME), _secondary_address),
-                                         "#### %s %s" % (__rand(STREET_NAME), _secondary_address)]))
+        return _numerify(random.choice(["##### %s" % random.choice(patterns.STREET_NAME),
+                                         "#### %s" % random.choice(patterns.STREET_NAME),
+                                         "### %s" % random.choice(patterns.STREET_NAME),
+                                         "### %s %s" % (random.choice(patterns.STREET_NAME), self._secondary_address()),
+                                         "#### %s %s" % (random.choice(patterns.STREET_NAME), self._secondary_address())]))
 
     def _secondary_address(self):
-        return __rand(__numerify(["Apt. ###", "Suite ###"]))
+        return _rand(_numerify(["Apt. ###", "Suite ###"]))
 
     def _city(self):
-        return __rand(CITY)
+        return random.choice(patterns.CITY)
 
     def _state_abbr(self):
-        return __rand(STATE_ABBR)
+        return _rand(data.STATE_ABBR)
 
     def _zip_code(self):
-        return __numerify(random.choice(["#####", "#####-####"]))
+        return _numerify(random.choice(["#####", "#####-####"]))
 
     def _uk_postcode(self):
-        return __bothify(__rand(["??# #??","??## #??"]))
+        return _bothify(random.choice(["??# #??","??## #??"]))
 
     def lorem(self):
         paragraph = []
-        word_list = WORDS.split()
+        word_list = data.WORDS.split()
         random.shuffle(word_list)
         for w in word_list:
             paragraph.append(w)
