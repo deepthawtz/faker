@@ -13,7 +13,7 @@ def test_fake_name():
     assert pattern.match(name)
 
 def test_username():
-    pattern = re.compile(r"^[a-z]*[^\s]$")
+    pattern = re.compile(r"[a-z]+")
     username = f.username()
     assert pattern.match(username)
 
@@ -27,11 +27,13 @@ def test_lorem():
     paragraph = f.lorem()
     assert pattern.match(paragraph)
 
+# @@@ need good regex for address
 # def test_address():
 #     pattern = re.compile(r"""(\d+)\s+           # first numbers
-#                              (.*)\s+       # street address
+#                              (.*)\s+          # street address
+#                              (.*)\s+           # city
 #                              ([A-Z][A-Z])\s+          # state
-#                              (\d{5})\s+         # zip
+#                              (\d{5,9})\s+         # zip
 #                              (.*)               # the rest
 #                           """, re.X)
 #     address = f.full_address()

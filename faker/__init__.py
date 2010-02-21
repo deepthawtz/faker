@@ -47,17 +47,17 @@ class Faker(object):
         return _numerify("###-###-#####")
 
     def _street_address(self):
-        return _numerify(random.choice(["##### %s" % random.choice(patterns.STREET_NAME),
-                                         "#### %s" % random.choice(patterns.STREET_NAME),
-                                         "### %s" % random.choice(patterns.STREET_NAME),
-                                         "### %s %s" % (random.choice(patterns.STREET_NAME), self._secondary_address()),
-                                         "#### %s %s" % (random.choice(patterns.STREET_NAME), self._secondary_address())]))
+        return _numerify(random.choice(["##### %s" % patterns.STREET_NAME(),
+                                         "#### %s Ave." % patterns.STREET_NAME(),
+                                         "### %s St." % patterns.STREET_NAME(),
+                                         "### %s %s" % (patterns.STREET_NAME(), self._secondary_address()),
+                                         "#### %s %s" % (patterns.STREET_NAME(), self._secondary_address())]))
 
     def _secondary_address(self):
-        return _rand(_numerify(["Apt. ###", "Suite ###"]))
+        return _numerify(random.choice(["Apt. ###", "Suite ###", ""]))
 
     def _city(self):
-        return random.choice(patterns.CITY)
+        return patterns.CITY()
 
     def _state_abbr(self):
         return _rand(data.STATE_ABBR)
@@ -75,3 +75,4 @@ class Faker(object):
         for w in word_list:
             paragraph.append(w)
         return " ".join(paragraph)
+
