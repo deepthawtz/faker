@@ -27,17 +27,20 @@ def test_lorem():
     paragraph = f.lorem()
     assert pattern.match(paragraph)
 
+
+# 175 Gleason Overpass Suite 529\nNew Marlee, OH 24663
+
 # @@@ need good regex for address
-# def test_address():
-#     pattern = re.compile(r"""(\d+)\s+           # first numbers
-#                              (.*)\s+          # street address
-#                              (.*)\s+           # city
-#                              ([A-Z][A-Z])\s+          # state
-#                              (\d{5,9})\s+         # zip
-#                              (.*)               # the rest
-#                           """, re.X)
-#     address = f.full_address()
-#     assert pattern.match(address)
+def test_address():
+    pattern = re.compile(r"""(\d+)\s+           # first numbers
+                             (.*)(\d+)?\n       # street address
+                             (.*),\s+           # city
+                             ([A-Z][A-Z])\s+    # state
+                             (\d{5})(-\d{4})?   # zip
+                          """, re.X)
+    for i in range(10):
+        address = f.full_address()
+        assert pattern.match(address)
 
 def test_phonenumber():
     pattern = re.compile(r"\d{3}-\d{3}-\d{4}")
