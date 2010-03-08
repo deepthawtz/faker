@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(name="Faker",
       version="0.0.1",
@@ -9,7 +9,9 @@ setup(name="Faker",
       author="Dylan Clendenin",
       author_email="dylan.clendenin@gmail.com",
       url="http://github.com/deepthawtz/faker",
-      py_modules=["faker"],
+      packages=find_packages(),
+      test_suite="nose.collector",
+      tests_require=["nose"],
       platforms="any",
       keywords="testing data generation",
       classifiers=[
