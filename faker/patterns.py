@@ -4,6 +4,7 @@ import data
 from utils import _rand
 
 
+
 CITY = lambda: random.choice([
     " ".join([_rand(data.CITY_PREFIX), "".join([_rand(data.FIRST_NAMES), _rand(data.CITY_SUFFIX)])]),
     " ".join([_rand(data.CITY_PREFIX), _rand(data.FIRST_NAMES)]),
