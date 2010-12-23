@@ -55,3 +55,41 @@ def test_company():
         company = f.company()
         ok_(pattern.match(company))
 
+def test_username_first():
+    f = Faker()
+    f.username()
+
+def test_username_multiple():
+    f = Faker()
+    v1 = f.username()
+    v2 = f.username()
+    ok_(v1 != v2)
+
+def test_name_multiple():
+    f = Faker()
+    v1 = f.name()
+    v2 = f.name()
+    ok_(v1 != v2)
+
+def test_name_correspondance1():
+    f = Faker()
+    f1 = f.first_name()
+    n1 = f.name()
+    f2 = f.first_name()
+    n2 = f.name()
+
+    # Check they correspond as we expect
+    ok_(f1 in n1)
+    ok_(f2 in n2)
+
+def test_name_correspondance2():
+    f = Faker()
+    # Opposite order to above
+    n1 = f.name()
+    f1 = f.first_name()
+    n2 = f.name()
+    f2 = f.first_name()
+
+    # Check they correspond as we expect
+    ok_(f1 in n1)
+    ok_(f2 in n2)

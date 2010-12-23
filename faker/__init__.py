@@ -13,32 +13,50 @@ import patterns
 from utils import *
 
 
+# Decorator for methods that need _get_names.  This ensures that if we
+# repeatedly use one method, we get fresh names, but if we cycle through the
+# methods, we get a set of names/email addresses that correspond. The individual
+# methods must not call each other for this to work.
+def uses_names(func):
+    def _wrapped(self):
+        if not self._name_accesses or func.__name__ in self._name_accesses:
+            self._get_names()
+        self._name_accesses.add(func.__name__)
+        return func(self)
+    _wrapped.__name__ = func.__name__
+    return _wrapped
 
 class Faker(object):
 
     def __init__(self):
-        self._name = ""
-        self._email = ""
-        self._username = ""
+        self._names = None
+        self._name_accesses = set()
 
+    def _get_names(self):
+        self._names = [rand(data.FIRST_NAMES), rand(data.LAST_NAMES)]
+        self._name_accesses = set()
+
+    @uses_names
     def name(self):
-        self._name = " ".join([self.first_name(), self.last_name()])
-        return self._name
+        return " ".join(self._names)
 
+    @uses_names
     def first_name(self):
-        return rand(data.FIRST_NAMES)
+        return self._names[0]
 
+    @uses_names
     def last_name(self):
-        return rand(data.LAST_NAMES)
+        return self._names[1]
 
+    @uses_names
     def username(self):
-        first, last = self._name.split()
-        self._username = "".join([first[:1], last]).lower().replace("'", "")
-        return self._username
+        first, last = self._names
+        return "".join([first[:1], last]).lower().replace("'", "")
 
+    @uses_names
     def email(self):
-        self._email = "@".join([self.username(), domain()])
-        return self._email
+        first, last = self._names
+        return ("%s%s@%s" % (first[:1], last, domain())).lower().replace("'", "")
 
     def full_address(self):
         return "%s\n%s, %s %s" % (self.street_address(), self.city(), self.state(), self.zip_code())
