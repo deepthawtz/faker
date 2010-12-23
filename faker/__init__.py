@@ -33,7 +33,7 @@ class Faker(object):
 
     def username(self):
         first, last = self._name.split()
-        self._username = "".join([first[:1], last]).lower()
+        self._username = "".join([first[:1], last]).lower().replace("'", "")
         return self._username
 
     def email(self):
