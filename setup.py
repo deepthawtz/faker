@@ -1,14 +1,16 @@
 #!/usr/bin/env python
 
+import codecs
 from setuptools import setup, find_packages
+import faker
 
 setup(name="Faker",
-      version="0.0.1",
-      description="A port of Ruby's Faker library for generating fake user data",
-      long_description="Often you want to generate user data but without all the thinking and typing. This is a library for that.",
-      author="Dylan Clendenin",
-      author_email="dylan.clendenin@gmail.com",
-      url="http://github.com/deepthawtz/faker",
+      version=faker.__version__,
+      description=faker.__doc__,
+      long_description=codecs.open("README.md", "r", "utf-8").read(),
+      author=faker.__author__,
+      author_email=faker.__contact__,
+      url=faker.__homepage__,
       packages=find_packages(),
       test_suite="nose.collector",
       tests_require=["nose"],
@@ -26,4 +28,4 @@ setup(name="Faker",
           "License :: OSI Approved :: MIT License",
           ],
       license="MIT",
-      )
+)

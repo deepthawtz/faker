@@ -18,7 +18,7 @@ Faker
 =====
 
 A Python library for generating fake user data.
-A port of Ruby's Faker library which is a port of Perl's Data::Faker library.
+Perl's got one, Ruby's got one, now Pythonistas envy no longer.
 
 Usage
 =====
@@ -31,6 +31,8 @@ Usage
     "mvanilli"
     >>> f.email()
     "mvanilli@hotmail.com"
+    >>> f.company()
+    "Scrodiant Labs"
 
 OR
 
@@ -42,25 +44,38 @@ OR
     ...     f.email()
     ...     f.phonenumber()
     ...     f.full_address()
+    ...     f.company()
     ...
-    'Ola Rice'
-    'orice'
-    'orice@hotmail.com'
-    '289-554-46105'
-    '824 Colleen Square\nFrancescamouth, AK 65473'
-    'Jaron Oberbrunner'
-    'joberbrunner'
-    'joberbrunner@gmail.com'
-    '213-543-45170'
-    '149 Fay Points 111\nWest Braulioland, MD 63587-2095'
-    'Brielle Hegmann'
-    'bhegmann'
-    'bhegmann@hotmail.com'
-    '553-104-17156'
-    '96397 Colleen Square\nWest Braulioland, OH 75395'
+    "Ola Rice"
+    "orice"
+    "orice@hotmail.com"
+    "289-554-46105"
+    "824 Colleen Square\nFrancescamouth, AK 65473"
+    "Yeddjam"
+    "Jaron Oberbrunner"
+    "joberbrunner"
+    "joberbrunner@gmail.com"
+    "213-543-45170"
+    "149 Fay Points 111\nWest Braulioland, MD 63587-2095"
+    "Plurbee"
+    "Brielle Hegmann"
+    "bhegmann"
+    "bhegmann@hotmail.com"
+    "553-104-17156"
+    "96397 Colleen Square\nWest Braulioland, OH 75395"
+    "Twispace"
 
 
+Installation
+============
 
-Feedback
-========
-Any ideas where this should go? Features that would be useful? Bugs?
+pip:
+
+    pip install faker
+
+source:
+
+    git clone git@github.com:deepthawtz/faker.git
+    cd faker
+    python setup.py install
+

@@ -11,7 +11,7 @@ def setup():
 def test_instance():
     ok_(isinstance(f, Faker), msg="object should be instance of Faker")
 
-def test_fake_name():
+def test_name():
     pattern = re.compile(r"(\w+\.? ?){2,3}")
     name = f.name()
     ok_(pattern.match(name))
@@ -21,7 +21,7 @@ def test_username():
     username = f.username()
     ok_(pattern.match(username))
 
-def test_fake_email():
+def test_email():
     pattern = re.compile(r".+@.+\.\w+")
     email = f.email()
     ok_(pattern.match(email))
@@ -48,3 +48,10 @@ def test_phonenumber():
     pattern = re.compile(r"\d{3}-\d{3}-\d{4}")
     phonenumber = f.phonenumber()
     ok_(pattern.match(phonenumber))
+
+def test_company():
+    pattern = re.compile(r"\w{1,3}")
+    for i in range(10):
+        company = f.company()
+        ok_(pattern.match(company))
+
