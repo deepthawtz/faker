@@ -7,7 +7,7 @@ import faker
 setup(name="Faker",
       version=faker.__version__,
       description=faker.__doc__,
-      long_description=codecs.open("README.md", "r", "utf-8").read(),
+      long_description=codecs.open("README.txt", "r", "utf-8").read(),
       author=faker.__author__,
       author_email=faker.__contact__,
       url=faker.__homepage__,

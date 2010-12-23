@@ -1,5 +1,5 @@
 """A library for generating fake user data"""
-VERSION = (0,0,3)
+VERSION = (0,0,4)
 __version__ = ".".join(map(str, VERSION))
 __author__ = "Dylan Clendenin"
 __contact__ = "dylan.clendenin@gmail.com"
