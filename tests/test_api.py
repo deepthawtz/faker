@@ -93,3 +93,11 @@ def test_name_correspondance2():
     # Check they correspond as we expect
     ok_(f1 in n1)
     ok_(f2 in n2)
+
+
+def test_age():
+    f = Faker()
+    age1 = f.age()
+    age2 = f.age()
+    ok_(isinstance(age1, int))
+    ok_(isinstance(age2, int))

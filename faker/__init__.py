@@ -91,3 +91,6 @@ class Faker(object):
             paragraph.append(w)
         return " ".join(paragraph)
 
+    def age(self):
+        return random.randint(16, 80)
+
