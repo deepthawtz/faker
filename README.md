@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/deepthawtz/faker.png?branch=master)](https://travis-ci.org/deepthawtz/faker)
+
         .....                            ..
      .H8888888x.  '`+              < .z@8"`
     :888888888888x.  !              !@88E                      .u    .
