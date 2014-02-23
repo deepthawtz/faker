@@ -1,7 +1,7 @@
 import random
 
-import data
-from utils import rand
+from faker import data
+from faker.utils import rand
 
 
 
