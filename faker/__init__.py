@@ -94,3 +94,6 @@ class Faker(object):
     def age(self):
         return random.randint(16, 80)
 
+    def gender(self):
+        return random.choice(["M","F"])
+
