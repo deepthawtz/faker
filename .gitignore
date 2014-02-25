@@ -2,3 +2,4 @@
 Faker.egg-info/
 build/
 dist/
+.tox
