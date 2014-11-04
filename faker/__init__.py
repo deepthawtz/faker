@@ -31,16 +31,26 @@ class Faker(object):
     def __init__(self, seed=None):
         self._names = None
         self._name_accesses = set()
-        if seed is not None and type(seed) is int:
-            random.seed(seed)
+        # if set the random seed
+        self.reset(seed)
 
     def _get_names(self):
         self._names = [rand(data.FIRST_NAMES), rand(data.LAST_NAMES)]
         self._name_accesses = set()
 
     def reset(self, seed=None):
+        """Reset the seed for the random number generator.
+        
+        The seed can be any integer and using the same
+        seed repeatedly will generate the same sequence
+        of random numbers multiple times. If no seed (or
+        an invalid seed) is given, the seed will be a 
+        new randomized value.
+        """
         if seed is not None and type(seed) is int:
             random.seed(seed)
+        else:
+            random.seed()
 
     @uses_names
     def name(self):
