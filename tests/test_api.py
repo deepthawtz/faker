@@ -103,10 +103,15 @@ def test_age():
     ok_(isinstance(age2, int))
 
 def test_seed():
+    import sys
+    if sys.version_info.major == 2:
+        initname = "Vita Kertzmann"
+    elif sys.version_info.major == 3:
+        initname = "Layla Cassin"
     f = Faker(1234)
     name1 = f.name()
     name2 = f.name()
-    ok_(name1 == "Vita Kertzmann")
+    ok_(name1 == initname)
     ok_(name1 != name2)
     f.reset(1234)
     name2 = f.name()
