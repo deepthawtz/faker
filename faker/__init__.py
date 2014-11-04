@@ -28,13 +28,19 @@ def uses_names(func):
 
 class Faker(object):
 
-    def __init__(self):
+    def __init__(self, seed=None):
         self._names = None
         self._name_accesses = set()
+        if seed is not None and type(seed) is int:
+            random.seed(seed)
 
     def _get_names(self):
         self._names = [rand(data.FIRST_NAMES), rand(data.LAST_NAMES)]
         self._name_accesses = set()
+
+    def reset(self, seed=None):
+        if seed is not None and type(seed) is int:
+            random.seed(seed)
 
     @uses_names
     def name(self):

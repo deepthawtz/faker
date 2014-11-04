@@ -101,3 +101,16 @@ def test_age():
     age2 = f.age()
     ok_(isinstance(age1, int))
     ok_(isinstance(age2, int))
+
+def test_seed():
+    f = Faker(1234)
+    name1 = f.name()
+    name2 = f.name()
+    ok_(name1 == "Vita Kertzmann")
+    ok_(name1 != name2)
+    f.reset(1234)
+    name2 = f.name()
+    ok_(name1 == name2)
+    
+
+    
