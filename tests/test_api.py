@@ -94,20 +94,57 @@ def test_name_correspondance2():
     ok_(f1 in n1)
     ok_(f2 in n2)
 
-
 def test_age():
     f = Faker()
     age1 = f.age()
     age2 = f.age()
     ok_(isinstance(age1, int))
     ok_(isinstance(age2, int))
+    ok_(age1 >= f.min_age)
+    ok_(age1 <= f.max_age)
+    f = Faker(min_age=30, max_age=30)
+    age1 = f.age()
+    age2 = f.age()
+    ok_(age1 == age2)
+
+
+
+def test_zipcode():
+
+    f = Faker()
+    for zip in [f.zip_code() for i in range(50)]:
+        ok_(type(zip) is str)
+        ok_(len(zip) == 5 or len(zip) == 10)
+        if len(zip) == 5:
+            ok_(zip.isdigit())
+        else:
+            ok_(zip[:5].isdigit())
+            ok_(zip[6:].isdigit())
+            ok_(zip[5:6] == "-")
+
+    f = Faker(zip_type=5)
+    for zip in [f.zip_code() for i in range(50)]:
+        ok_(type(zip) is str)
+        ok_(len(zip) == 5)
+        ok_(zip.isdigit())
+
+    f = Faker(zip_type=9)
+    for zip in [f.zip_code() for i in range(50)]:
+        ok_(type(zip) is str)
+        ok_(len(zip) == 10)
+        ok_(zip[:5].isdigit())
+        ok_(zip[6:].isdigit())
+        ok_(zip[5:6] == "-")
 
 def test_seed():
+
+    # different initial names for python v2 vs. v3
     import sys
-    if sys.version_info.major == 2:
+    if str(sys.version_info[0]) == "2":
         initname = "Vita Kertzmann"
-    elif sys.version_info.major == 3:
+    elif str(sys.version_info[0]) == "3":
         initname = "Layla Cassin"
+
     f = Faker(1234)
     name1 = f.name()
     name2 = f.name()
@@ -116,6 +153,3 @@ def test_seed():
     f.reset(1234)
     name2 = f.name()
     ok_(name1 == name2)
-    
-
-    
