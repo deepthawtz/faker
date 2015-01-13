@@ -1,3 +1,5 @@
+::
+
         .....                            ..
      .H8888888x.  '`+              < .z@8"`
     :888888888888x.  !              !@88E                      .u    .
@@ -69,11 +71,11 @@ OR
 Installation
 ============
 
-pip:
+pip::
 
     pip install faker
 
-source:
+source::
 
     git clone git@github.com:deepthawtz/faker.git
     cd faker
