@@ -28,13 +28,41 @@ def uses_names(func):
 
 class Faker(object):
 
-    def __init__(self):
+    def __init__(self,
+        seed=None, zip_type=None, min_age=None, max_age=None):
+
         self._names = None
         self._name_accesses = set()
+
+        # set the type of zip to None (default), 5 or 9
+        self.zip_type = zip_type if zip_type in [None, 5, 9] else None
+
+        # set the minimum and maximum ages (swap if min > max)
+        self.min_age = min_age if type(min_age) == int else 16
+        self.max_age = max_age if type(max_age) == int else 80
+        if self.min_age > self.max_age:
+            self.min_age, self.max_age = self.max_age, self.min_age
+
+        # set the random seed
+        self.reset(seed)
 
     def _get_names(self):
         self._names = [rand(data.FIRST_NAMES), rand(data.LAST_NAMES)]
         self._name_accesses = set()
+
+    def reset(self, seed=None):
+        """Reset the seed for the random number generator.
+
+        The seed can be any integer and using the same
+        seed repeatedly will generate the same sequence
+        of random numbers multiple times. If no seed (or
+        an invalid seed) is given, the seed will be a
+        new randomized value.
+        """
+        if seed is not None and type(seed) is int:
+            random.seed(seed)
+        else:
+            random.seed()
 
     @uses_names
     def name(self):
@@ -66,19 +94,22 @@ class Faker(object):
 
     def street_address(self):
         return numerify(random.choice(["##### %s" % patterns.STREET_NAME(),
-                                         "#### %s Ave." % patterns.STREET_NAME(),
-                                         "### %s St." % patterns.STREET_NAME(),
-                                         "### %s %s" % (patterns.STREET_NAME(), secondary_address()),
-                                         "#### %s %s" % (patterns.STREET_NAME(), secondary_address())]))
+                                       "#### %s Ave." % patterns.STREET_NAME(),
+                                       "### %s St." % patterns.STREET_NAME(),
+                                       "### %s %s" % (patterns.STREET_NAME(), secondary_address()),
+                                       "#### %s %s" % (patterns.STREET_NAME(), secondary_address())]))
 
     def city(self):
-        return patterns.CITY()
+         return patterns.CITY()
 
     def state(self):
         return rand(data.STATE_ABBR)
 
     def zip_code(self):
-        return numerify(random.choice(["#####", "#####-####"]))
+        zips = { None:random.choice(["#####", "#####-####"]),
+                 5:"#####",
+                 9:"#####-####" }
+        return numerify(zips[self.zip_type])
 
     def company(self):
         return patterns.COMPANY_NAME()
@@ -92,7 +123,7 @@ class Faker(object):
         return " ".join(paragraph)
 
     def age(self):
-        return random.randint(16, 80)
+        return random.randint(self.min_age, self.max_age)
 
     def gender(self):
         return random.choice(["M","F"])
