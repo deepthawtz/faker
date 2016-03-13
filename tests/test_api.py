@@ -110,31 +110,30 @@ def test_age():
 
 
 def test_zipcode():
-
     f = Faker()
-    for zip in [f.zip_code() for i in range(50)]:
-        ok_(type(zip) is str)
-        ok_(len(zip) == 5 or len(zip) == 10)
-        if len(zip) == 5:
-            ok_(zip.isdigit())
+    for zipcode in [f.zip_code() for i in range(50)]:
+        ok_(type(zipcode) is str)
+        ok_(len(zipcode) == 5 or len(zipcode) == 10)
+        if len(zipcode) == 5:
+            ok_(zipcode.isdigit())
         else:
-            ok_(zip[:5].isdigit())
-            ok_(zip[6:].isdigit())
-            ok_(zip[5:6] == "-")
+            ok_(zipcode[:5].isdigit())
+            ok_(zipcode[6:].isdigit())
+            ok_(zipcode[5:6] == "-")
 
     f = Faker(zip_type=5)
-    for zip in [f.zip_code() for i in range(50)]:
-        ok_(type(zip) is str)
-        ok_(len(zip) == 5)
-        ok_(zip.isdigit())
+    for zipcode in [f.zip_code() for i in range(50)]:
+        ok_(type(zipcode) is str)
+        ok_(len(zipcode) == 5)
+        ok_(zipcode.isdigit())
 
     f = Faker(zip_type=9)
-    for zip in [f.zip_code() for i in range(50)]:
-        ok_(type(zip) is str)
-        ok_(len(zip) == 10)
-        ok_(zip[:5].isdigit())
-        ok_(zip[6:].isdigit())
-        ok_(zip[5:6] == "-")
+    for zipcode in [f.zip_code() for i in range(50)]:
+        ok_(type(zipcode) is str)
+        ok_(len(zipcode) == 10)
+        ok_(zipcode[:5].isdigit())
+        ok_(zipcode[6:].isdigit())
+        ok_(zipcode[5:6] == "-")
 
 def test_seed():
 
