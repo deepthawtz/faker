@@ -1,4 +1,5 @@
 .coverage
+.eggs/
 Faker.egg-info/
 build/
 dist/
