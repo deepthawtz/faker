@@ -136,13 +136,12 @@ def test_zipcode():
         ok_(zipcode[5:6] == "-")
 
 def test_seed():
-
     # different initial names for python v2 vs. v3
     import sys
     if str(sys.version_info[0]) == "2":
         initname = "Vita Kertzmann"
     elif str(sys.version_info[0]) == "3":
-        initname = "Layla Cassin"
+        initname = "Lawrence Cassin"
 
     f = Faker(1234)
     name1 = f.name()
