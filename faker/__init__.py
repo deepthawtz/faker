@@ -1,5 +1,5 @@
 """A library for generating fake user data"""
-VERSION = (0,1,0)
+VERSION = (0,1,1)
 __version__ = ".".join(map(str, VERSION))
 __author__ = "Dylan Clendenin"
 __contact__ = "dylan.clendenin@gmail.com"
@@ -7,10 +7,19 @@ __homepage__ = "https://github.com/deepthawtz/faker"
 __all__ = ("Faker",)
 
 import random
+import warnings
 
 from faker import data
 from faker import patterns
 from faker.utils import rand, numerify, domain, secondary_address
+
+deprecation_message = """
+This faker package is being deprecated September 15, 2016.
+
+You should switch to using https://pypi.python.org/pypi/fake-factory instead.
+After September 15, 2016 the PyPi faker package will be changing to that!
+"""
+warnings.warn(deprecation_message, PendingDeprecationWarning)
 
 
 # Decorator for methods that need _get_names.  This ensures that if we
