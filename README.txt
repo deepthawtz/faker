@@ -1,13 +1,5 @@
 ::
 
-NOTE: This package is being deprecated
-======================================
-
-You should use [fake-factory](https://pypi.python.org/pypi/fake-factory)
-instead. After Sept 15, 2016 the PyPi `faker` package will point to new
-[faker](https://github.com/joke2k/faker).
-
-
         .....                            ..
      .H8888888x.  '`+              < .z@8"`
     :888888888888x.  !              !@88E                      .u    .
@@ -23,6 +15,14 @@ instead. After Sept 15, 2016 the PyPi `faker` package will point to new
      '888       X88f
       '%8:     .8*"
          ^----~"`
+
+NOTE: This package is being deprecated
+======================================
+
+You should use [fake-factory](https://pypi.python.org/pypi/fake-factory)
+instead. After Sept 15, 2016 the PyPi `faker` package will point to new
+[faker](https://github.com/joke2k/faker).
+
 
 Faker
 =====
