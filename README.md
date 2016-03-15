@@ -1,5 +1,14 @@
 [![Build Status](https://travis-ci.org/deepthawtz/faker.png?branch=master)](https://travis-ci.org/deepthawtz/faker)
 
+NOTE: This package is being deprecated
+======================================
+
+You should use [fake-factory](https://pypi.python.org/pypi/fake-factory)
+instead. After Sept 15, 2016 the PyPi `faker` package will point to new
+[faker](https://github.com/joke2k/faker).
+
+
+
         .....                            ..
      .H8888888x.  '`+              < .z@8"`
     :888888888888x.  !              !@88E                      .u    .
